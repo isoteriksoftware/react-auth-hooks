@@ -24,7 +24,7 @@ const FormInput = styled.input`
   color: #333;
   border: none;
   border-radius: 25px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   box-sizing: border-box;
   font-size: 1em;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -48,7 +48,7 @@ const FormButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 25px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
