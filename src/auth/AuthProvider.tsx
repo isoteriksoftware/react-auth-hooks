@@ -1,5 +1,5 @@
-import AuthContext from "./AuthContext";
 import { AuthProviderProps } from "./auth.types";
+import AuthContext from "./AuthContext";
 import useAuthProviderLogic from "./useAuthProviderLogic";
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
