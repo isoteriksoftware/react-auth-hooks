@@ -78,8 +78,8 @@ const FormTitle = styled.h2`
 `;
 
 const ErrorMessageContainer = styled.div`
-  background-color: #ffe0e0; // Light red background
-  color: #d93025; // Dark red text
+  background-color: #ffe0e0;
+  color: #d93025;
   border-left: 5px solid #d93025;
   padding: 10px 20px;
   margin: 10px 0;

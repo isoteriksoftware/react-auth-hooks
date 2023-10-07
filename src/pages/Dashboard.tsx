@@ -50,13 +50,13 @@ const Button = styled.button`
 `;
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <PrivateRoute>
       <Container>
-        <Button>Logout</Button>
-        <Title>Welcome to Your Dashboard, {user?.name}</Title>
+        <Button onClick={logout}>Logout</Button>
+        <Title>Welcome to Your Dashboard, {user?.name}!</Title>
         <Text>
           This is a protected page! You can only see this if you're
           authenticated.

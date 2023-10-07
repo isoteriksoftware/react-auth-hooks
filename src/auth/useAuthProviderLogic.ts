@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { User } from "./auth.types";
+import { useNavigate } from "react-router-dom";
 
 const SESSION_STORAGE_KEY = "auth-provider-example";
 
@@ -8,6 +9,7 @@ const useAuthProviderLogic = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem(SESSION_STORAGE_KEY);
@@ -56,6 +58,7 @@ const useAuthProviderLogic = () => {
     setToken(null);
     setError(null);
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    navigate("/");
   };
 
   return {
