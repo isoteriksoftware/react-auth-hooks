@@ -1,12 +1,8 @@
 import { createContext } from "react";
-import { AuthState } from "./auth.types";
+import { AUTH_NO_PROVIDER_FLAG, AuthState } from "./auth.types";
 
-const AuthContext = createContext<AuthState>({
-  user: null,
-  isLoggedIn: null,
-  token: null,
-  login: () => {},
-  logout: () => {},
-});
+const AuthContext = createContext<AuthState | typeof AUTH_NO_PROVIDER_FLAG>(
+  AUTH_NO_PROVIDER_FLAG
+);
 
 export default AuthContext;

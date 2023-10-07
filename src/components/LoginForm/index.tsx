@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { LoginFormProps } from "./LoginForm.types";
 import useLoginFormLogic from "./useLoginFormLogic";
+import useAuth from "../../auth/useAuth";
 
 const Root = styled.div`
   display: flex;
@@ -77,9 +77,32 @@ const FormTitle = styled.h2`
   text-align: center;
 `;
 
-const LoginForm = ({ onSubmit }: LoginFormProps) => {
+const ErrorMessageContainer = styled.div`
+  background-color: #ffe0e0; // Light red background
+  color: #d93025; // Dark red text
+  border-left: 5px solid #d93025;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+`;
+
+const ErrorIcon = styled.span`
+  font-size: 1.5em;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+const LoginForm = () => {
+  const { error } = useAuth();
+
   const { handleEmailChange, handlePasswordChange, handleSubmit } =
-    useLoginFormLogic(onSubmit);
+    useLoginFormLogic();
 
   return (
     <Root>
@@ -99,6 +122,13 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           required
           onChange={handlePasswordChange}
         />
+
+        {error && (
+          <ErrorMessageContainer>
+            <ErrorIcon>❌</ErrorIcon>
+            <span>{error}</span>
+          </ErrorMessageContainer>
+        )}
         <FormButton type="submit">Submit</FormButton>
       </Container>
     </Root>

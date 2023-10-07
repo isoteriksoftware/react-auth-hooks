@@ -1,7 +1,19 @@
-import LoginForm from "../ui/LoginForm";
+import { useEffect } from "react";
+import useAuth from "../auth/useAuth";
+import LoginForm from "../components/LoginForm";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  return <LoginForm onSubmit={console.log} />;
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn, navigate]);
+
+  return <LoginForm />;
 };
 
 export default Login;

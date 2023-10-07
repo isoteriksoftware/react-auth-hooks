@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { LoginFormValues } from "./LoginForm.types";
+import useAuth from "../../auth/useAuth";
 
-const useLoginFormLogic = (onSubmit: (values: LoginFormValues) => void) => {
+const useLoginFormLogic = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   const handleEmailChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +23,11 @@ const useLoginFormLogic = (onSubmit: (values: LoginFormValues) => void) => {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      onSubmit({ email, password });
+
+      // handle login
+      login(email, password);
     },
-    [email, onSubmit, password]
+    [email, login, password]
   );
 
   return {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import PrivateRoute from "../auth/PrivateRoute";
+import useAuth from "../auth/useAuth";
 
 const Container = styled.div`
   display: flex;
@@ -48,16 +49,21 @@ const Button = styled.button`
   }
 `;
 
-const Home = () => {
-  const navigate = useNavigate();
+const Dashboard = () => {
+  const { user } = useAuth();
 
   return (
-    <Container>
-      <Button onClick={() => navigate("/login")}>Login</Button>
-      <Title>Welcome to Our Homepage</Title>
-      <Text>Login to access your private dashboard!</Text>
-    </Container>
+    <PrivateRoute>
+      <Container>
+        <Button>Logout</Button>
+        <Title>Welcome to Your Dashboard, {user?.name}</Title>
+        <Text>
+          This is a protected page! You can only see this if you're
+          authenticated.
+        </Text>
+      </Container>
+    </PrivateRoute>
   );
 };
 
-export default Home;
+export default Dashboard;
