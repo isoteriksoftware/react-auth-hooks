@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { User } from "./auth.types";
+import { AuthState, User } from "./auth.types";
 import { useNavigate } from "react-router-dom";
 
-const SESSION_STORAGE_KEY = "auth-provider-example";
+const SESSION_STORAGE_KEY = "auth-provider-session-key";
 
-const useAuthProviderLogic = () => {
+const useAuthProviderLogic = (): AuthState => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<string | null>(null);
@@ -30,7 +30,7 @@ const useAuthProviderLogic = () => {
   }, []);
 
   const login = (email: string, password: string) => {
-    // We're simulating logging in here for simplicity.
+    // We're simulating login here for simplicity.
     // We should normally make a POST /login request to the backend API here
     // and use the response to set the user, token, etc.
     // You can switch to use real authentication logic here.
